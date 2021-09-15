@@ -1,0 +1,16 @@
+syntax = "proto3";
+package example;
+
+option go_package = "github.com/guyarb/pixie-test/proto";
+
+message SampleRequest {
+  string msg = 1;
+}
+
+message SampleResponse {
+  string msg = 1;
+}
+
+service Echo {
+  rpc Sample(SampleRequest) returns (SampleResponse) {}
+}

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example
+spec:
+  selector:
+    matchLabels:
+      app: example
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      containers:
+        - name: example
+          image: guyarb/example:latest
+          imagePullPolicy: Always
+          args:
+            - /bin/sh
+            - -c
+            - /app/exam
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-service
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      name: rpc
+  selector:
+    app: example
+  type: LoadBalancer
