@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exampleclient
+spec:
+  selector:
+    matchLabels:
+      app: exampleclient
+  template:
+    metadata:
+      labels:
+        app: exampleclient
+    spec:
+      containers:
+        - name: exampleclient
+          image: guyarb/exampleclient:latest
+          imagePullPolicy: Always
+          args:
+            - /bin/sh
+            - -c
+            - /app/client example-service:8080
+          ports:
+            - containerPort: 8080

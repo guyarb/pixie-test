@@ -27,7 +27,6 @@ func main() {
 	srv := grpc.NewServer()
 
 	proto.RegisterEchoServer(srv, grpcServer)
-
 	listener, err := net.Listen("tcp", "0.0.0.0:8080")
 	if err != nil {
 		fmt.Println(err)
